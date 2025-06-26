@@ -14,19 +14,21 @@
       padding: 0;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: linear-gradient(135deg, #ffe6ec, #e0f7ff);
-      overflow-x: hidden;
+      overflow: hidden;
       color: #333;
     }
 
-    .section {
-      min-height: 100vh;
-      padding: 40px 20px;
+    #main {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      animation: fadeIn 1s ease;
+      padding: 20px;
     }
 
     h1 {
@@ -65,47 +67,6 @@
       margin: 20px 0;
     }
 
-    .slide {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
-    }
-
-    .slide.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-
-    .typing {
-      border-right: .1em solid #333;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
-      max-width: 100%;
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: #333; }
-    }
-
     #stars {
       position: fixed;
       width: 100%;
@@ -115,56 +76,23 @@
       z-index: 0;
       opacity: 0.2;
     }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+    }
   </style>
 </head>
 <body>
   <div id="stars"></div>
-
-  <!-- Slide 1 -->
-  <section class="section slide" id="slide1">
-    <h1 class="typing">Hai Kalila... 😳</h1>
-    <p>Aku cuma pengen tahu satu hal...</p>
-    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
-  </section>
-
-  <!-- Slide 2 -->
-  <section class="section slide" id="slide2">
-    <h1>Kalila, kamu udah senyum hari ini?</h1>
-    <button class="btn" onclick="playBoing()">Belum 😶</button>
-    <button class="btn" onclick="playBoing()">Udah... Tapi mau lagi 😚</button>
-    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
-  </section>
-
-  <!-- Slide 3 -->
-  <section class="section slide" id="slide3">
-    <h1>Kamu lagi ngerasa...</h1>
-    <button class="btn" onclick="nextSlide()">✨ Butuh semangat</button>
-    <button class="btn" onclick="nextSlide()">❤️ Butuh disayang</button>
-    <button class="btn" onclick="nextSlide()">😳 Butuh dibilang cantik</button>
-  </section>
-
-  <!-- Slide 4 -->
-  <section class="section slide" id="slide4">
-    <h1>Oke... dengar baik-baik ya 🥺</h1>
-    <p>Kalila itu versi limited edition dari ketenangan + keimutan.</p>
-    <img class="image" src="https://placekitten.com/300/300" alt="Kalila"/>
-    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
-  </section>
-
-  <!-- Slide 5 -->
-  <section class="section slide" id="slide5">
-    <h1 class="typing" id="surat"></h1>
-    <button class="btn" onclick="playVoice()">🔊 Dengerin bisikan manja</button>
-    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
-  </section>
-
-  <!-- Slide 6 -->
-  <section class="section slide" id="slide6">
-    <h1>Boleh nggak aku jadi penyemangat harian kamu?</h1>
-    <button class="btn" onclick="ending(true)">Boleeeeh 😍</button>
-    <button class="btn" onclick="ending(false)">Belum siap 😅</button>
-    <button class="btn" onclick="window.location.href='https://wa.me/08xxxxxxxxxx?text=Hai%20aku%20tersenyum%20gara-gara%20KalilaLand%20😳'">💬 Balas via WhatsApp</button>
-  </section>
+  <div id="main">
+    <h1>Apanihh?? 😳</h1>
+    <button class="btn" onclick="startStory()">Tekan aku dulu dong 🙈</button>
+  </div>
 
   <footer>
     Dibuat dengan penuh salting 💖 oleh seseorang yang mikirin kamu.
@@ -172,26 +100,58 @@
 
   <audio id="boing" src="https://www.myinstants.com/media/sounds/boing.mp3"></audio>
   <audio id="voice" src="https://www.myinstants.com/media/sounds/anime-wow.mp3"></audio>
-  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9a10d56607.mp3?filename=sweet-relaxing-ambient-111161.mp3" autoplay loop></audio>
+  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9a10d56607.mp3?filename=sweet-relaxing-ambient-111161.mp3" loop></audio>
 
   <script>
-    let current = 0;
-    const slides = document.querySelectorAll(".slide");
+    const main = document.getElementById('main');
+    const music = document.getElementById('music');
 
-    function nextSlide() {
-      if (current < slides.length - 1) {
-        current++;
-        showSlide(current);
+    let step = 0;
+
+    const slides = [
+      {
+        html: `<h1>Hai Kalila... 😳</h1><p>Aku cuma pengen tahu satu hal...</p><button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+      },
+      {
+        html: `<h1>Kalila, kamu udah senyum hari ini?</h1>
+              <button class="btn" onclick="playBoing()">Belum 😶</button>
+              <button class="btn" onclick="playBoing()">Udah... Tapi mau lagi 😚</button>
+              <button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+      },
+      {
+        html: `<h1>Kamu lagi ngerasa...</h1>
+              <button class="btn" onclick="nextSlide()">✨ Butuh semangat</button>
+              <button class="btn" onclick="nextSlide()">❤️ Butuh disayang</button>
+              <button class="btn" onclick="nextSlide()">😳 Butuh dibilang cantik</button>`
+      },
+      {
+        html: `<h1>Oke... dengar baik-baik ya 🥺</h1>
+              <p>Kalila itu versi limited edition dari ketenangan + keimutan.</p>
+              <img class="image" src="https://placekitten.com/300/300" alt="Kalila"/>
+              <button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+      },
+      {
+        html: `<h1 style="white-space:pre-wrap;">${`Hai Kalila...\n\nHari ini, apa pun yang kamu rasain — capek, bingung, overthinking — coba tarik napas sebentar...\n\nTerus ingat satu hal:\nKamu itu hebat. Kamu itu kuat.\n\nNggak semua orang bisa punya senyum selembut kamu,\ndan semangat sekeren kamu yang terus maju, walau kadang hati sendiri pun nggak diajak kompromi.\n\nKalau hari ini kamu lelah, boleh istirahat ya...\nTapi jangan pernah mikir kamu sendirian. Karena ada aku di sini — yang selalu senang tiap kamu cerita, senyum, atau sekadar bilang \"lagi nggak apa-apa\".\n\nKamu itu, Kalila...\nUdah bikin dunia seseorang jadi lebih hangat — termasuk duniaku. ☀️\n\nJadi... tetap semangat ya.\nPelan-pelan aja, asal kamu tetap jalan. Dan jangan lupa...\n\nAku bangga sama kamu. 🩷`}</h1>
+
+              <button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+      },
+      {
+        html: `<h1>Boleh nggak aku jadi penyemangat harian kamu?</h1>
+              <button class="btn" onclick="ending(true)">Boleeeeh 😍</button>
+              <button class="btn" onclick="ending(false)">Belum siap 😅</button>`
       }
+    ];
+
+    function startStory() {
+      music.play();
+      nextSlide();
     }
 
-    function showSlide(i) {
-      slides.forEach((slide, idx) => {
-        slide.classList.remove('visible');
-        if (idx === i) {
-          slide.classList.add('visible');
-        }
-      });
+    function nextSlide() {
+      if (step < slides.length) {
+        main.innerHTML = slides[step].html;
+        step++;
+      }
     }
 
     function playBoing() {
@@ -209,11 +169,6 @@
         alert("Gapapa... tapi kamu tetap spesial banget 😌");
       }
     }
-
-    window.onload = () => {
-      showSlide(0);
-      document.getElementById("surat").innerText = `Hai Kalila...\n\nHari ini, apa pun yang kamu rasain — capek, bingung, overthinking — coba tarik napas sebentar...\n\nTerus ingat satu hal:\nKamu itu hebat. Kamu itu kuat.\n\nNggak semua orang bisa punya senyum selembut kamu,\ndan semangat sekeren kamu yang terus maju, walau kadang hati sendiri pun nggak diajak kompromi.\n\nKalau hari ini kamu lelah, boleh istirahat ya...\nTapi jangan pernah mikir kamu sendirian. Karena ada aku di sini — yang selalu senang tiap kamu cerita, senyum, atau sekadar bilang \"lagi nggak apa-apa\".\n\nKamu itu, Kalila...\nUdah bikin dunia seseorang jadi lebih hangat — termasuk duniaku. ☀️\n\nJadi... tetap semangat ya.\nPelan-pelan aja, asal kamu tetap jalan. Dan jangan lupa...\n\nAku bangga sama kamu. 🩷`;
-    };
   </script>
 </body>
 </html>
