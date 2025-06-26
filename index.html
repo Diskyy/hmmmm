@@ -3,155 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hai Kalila ✨</title>
+  <title>KalilaLand 💖</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(to bottom, #ffe6f0, #f0faff);
+      background: linear-gradient(135deg, #ffe6ec, #e0f7ff);
+      overflow-x: hidden;
       color: #333;
-      overflow: hidden;
     }
 
-    .slide-container {
+    .section {
+      min-height: 100vh;
+      padding: 40px 20px;
       display: flex;
-      width: 500%;
-      height: 100vh;
-      transition: transform 0.8s ease-in-out;
-    }
-
-    .slide {
-      flex: 1 0 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      padding: 20px;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      animation: fadeIn 1s ease;
     }
 
-    h1, h2 {
-      margin: 10px;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
 
-    .button-group {
-      margin-top: 20px;
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
     }
 
-    button {
-      background: #ffaad4;
+    .btn {
+      padding: 12px 24px;
       border: none;
-      padding: 12px 20px;
-      margin: 10px;
-      border-radius: 20px;
+      background-color: #ffaad4;
+      color: white;
+      border-radius: 30px;
       font-size: 16px;
+      margin: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    button:hover {
-      background: #ffc1e3;
+    .btn:hover {
+      background-color: #ffa0cc;
       transform: scale(1.05);
     }
 
-    img {
-      max-width: 70%;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    .image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin: 20px 0;
     }
 
-    .nav-buttons {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+    .slide {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
     }
 
-    .nav-buttons button {
-      background: #fff;
-      border: 2px solid #ffaad4;
-      color: #ff5caa;
+    .slide.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    audio {
-      display: none;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .typing {
+      border-right: .1em solid #333;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+      max-width: 100%;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #333; }
     }
   </style>
 </head>
 <body>
-  <div id="slider" class="slide-container">
-    <!-- Slide 1 -->
-    <div class="slide" style="background:#ffe6f0;">
-      <h1>✨ Pssst... Kalila, kamu di sana? ✨</h1>
-      <h2>Ada yang pengen bilang sesuatu~</h2>
-    </div>
 
-    <!-- Slide 2 -->
-    <div class="slide" style="background:#fef3f8;">
-      <h1>Sudah makan belum?</h1>
-      <div class="button-group">
-        <button onclick="playSound()">Udah, tapi pengen disuapin 😳</button>
-        <button onclick="playSound()">Belum, nunggu kamu ngajak 😋</button>
-      </div>
-    </div>
+  <!-- Slide 1 -->
+  <section class="section slide" id="slide1">
+    <h1 class="typing">Hai Kalila... 😳</h1>
+    <p>Aku cuma pengen tahu satu hal...</p>
+    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
+  </section>
 
-    <!-- Slide 3 -->
-    <div class="slide" style="background:#f0faff;">
-      <h1>Kamu lagi mood-nya kayak apa nih?</h1>
-      <div class="button-group">
-        <button onclick="playSound()">Lagi salting liat ini 🙈</button>
-        <button onclick="playSound()">Lagi pengen dipeluk 🥺</button>
-      </div>
-    </div>
+  <!-- Slide 2 -->
+  <section class="section slide" id="slide2">
+    <h1>Kalila, kamu udah senyum hari ini?</h1>
+    <button class="btn" onclick="playBoing()">Belum 😶</button>
+    <button class="btn" onclick="playBoing()">Udah... Tapi mau lagi 😚</button>
+    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
+  </section>
 
-    <!-- Slide 4 -->
-    <div class="slide" style="background:#e0f7ff;">
-      <h1>Kamu itu kayak senja 🌅</h1>
-      <h2>Selalu bikin tenang dan hangat hati ❤️</h2>
-      <img src="https://placekitten.com/300/300" alt="Foto Kalila (placeholder)">
-    </div>
+  <!-- Slide 3 -->
+  <section class="section slide" id="slide3">
+    <h1>Kamu lagi ngerasa...</h1>
+    <button class="btn" onclick="nextSlide()">✨ Butuh semangat</button>
+    <button class="btn" onclick="nextSlide()">❤️ Butuh disayang</button>
+    <button class="btn" onclick="nextSlide()">😳 Butuh dibilang cantik</button>
+  </section>
 
-    <!-- Slide 5 -->
-    <div class="slide" style="background:#fff0f5;">
-      <h1>Boleh nggak...</h1>
-      <h2>...aku jadi penyemangat harian Kalila? 😳💕</h2>
-      <div class="button-group">
-        <button onclick="confess()">Boleeeh 🥰</button>
-        <button onclick="alert('Yahh... 😢 Tapi tetep semangat ya Kalila!')">Ehm, nanti aja 🙈</button>
-      </div>
-    </div>
-  </div>
+  <!-- Slide 4 -->
+  <section class="section slide" id="slide4">
+    <h1>Oke... dengar baik-baik ya 🥺</h1>
+    <p>Kalila itu versi limited edition dari ketenangan + keimutan.</p>
+    <img class="image" src="https://placekitten.com/300/300" alt="Kalila"/>
+    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
+  </section>
 
-  <div class="nav-buttons">
-    <button onclick="nextSlide()">➡️ Lanjut</button>
-  </div>
+  <!-- Slide 5 -->
+  <section class="section slide" id="slide5">
+    <h1>Boleh nggak aku jadi penyemangat harian kamu?</h1>
+    <button class="btn" onclick="ending(true)">Boleeeeh 😍</button>
+    <button class="btn" onclick="ending(false)">Belum siap 😅</button>
+  </section>
+
+  <footer>
+    Dibuat dengan penuh salting 💖 oleh seseorang yang mikirin kamu.
+  </footer>
 
   <audio id="boing" src="https://www.myinstants.com/media/sounds/boing.mp3"></audio>
-  <audio id="cheer" src="https://www.myinstants.com/media/sounds/tada-fanfare.mp3"></audio>
-
   <script>
-    let currentSlide = 0;
+    let current = 0;
+    const slides = document.querySelectorAll(".slide");
 
     function nextSlide() {
-      currentSlide++;
-      if (currentSlide > 4) currentSlide = 0;
-      document.getElementById("slider").style.transform = `translateX(-${currentSlide * 100}%)`;
+      if (current < slides.length - 1) {
+        current++;
+        showSlide(current);
+      }
     }
 
-    function playSound() {
+    function showSlide(i) {
+      slides.forEach((slide, idx) => {
+        slide.classList.remove('visible');
+        if (idx === i) {
+          slide.classList.add('visible');
+        }
+      });
+    }
+
+    function playBoing() {
       document.getElementById("boing").play();
     }
 
-    function confess() {
-      document.getElementById("cheer").play();
-      alert("YEAAAY!! 🥹 Kamu berhasil bikin aku senyum satu harian!");
+    function ending(choice) {
+      if (choice) {
+        alert("YAY!! 🥹 Aku janji bakal jadi moodbooster kamu tiap hari!");
+      } else {
+        alert("Gapapa... tapi kamu tetap spesial banget 😌");
+      }
     }
 
-    // Auto-play intro sound after load
     window.onload = () => {
-      setTimeout(() => playSound(), 1000);
-    }
+      showSlide(0);
+    };
   </script>
 </body>
 </html>
