@@ -105,9 +105,20 @@
       from, to { border-color: transparent }
       50% { border-color: #333; }
     }
+
+    #stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://cdn.pixabay.com/photo/2017/08/30/02/05/stars-2695560_1280.jpg') repeat;
+      background-size: cover;
+      z-index: 0;
+      opacity: 0.2;
+    }
   </style>
 </head>
 <body>
+  <div id="stars"></div>
 
   <!-- Slide 1 -->
   <section class="section slide" id="slide1">
@@ -142,9 +153,17 @@
 
   <!-- Slide 5 -->
   <section class="section slide" id="slide5">
+    <h1 class="typing" id="surat"></h1>
+    <button class="btn" onclick="playVoice()">🔊 Dengerin bisikan manja</button>
+    <button class="btn" onclick="nextSlide()">👉 Lanjut</button>
+  </section>
+
+  <!-- Slide 6 -->
+  <section class="section slide" id="slide6">
     <h1>Boleh nggak aku jadi penyemangat harian kamu?</h1>
     <button class="btn" onclick="ending(true)">Boleeeeh 😍</button>
     <button class="btn" onclick="ending(false)">Belum siap 😅</button>
+    <button class="btn" onclick="window.location.href='https://wa.me/08xxxxxxxxxx?text=Hai%20aku%20tersenyum%20gara-gara%20KalilaLand%20😳'">💬 Balas via WhatsApp</button>
   </section>
 
   <footer>
@@ -152,6 +171,9 @@
   </footer>
 
   <audio id="boing" src="https://www.myinstants.com/media/sounds/boing.mp3"></audio>
+  <audio id="voice" src="https://www.myinstants.com/media/sounds/anime-wow.mp3"></audio>
+  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9a10d56607.mp3?filename=sweet-relaxing-ambient-111161.mp3" autoplay loop></audio>
+
   <script>
     let current = 0;
     const slides = document.querySelectorAll(".slide");
@@ -176,6 +198,10 @@
       document.getElementById("boing").play();
     }
 
+    function playVoice() {
+      document.getElementById("voice").play();
+    }
+
     function ending(choice) {
       if (choice) {
         alert("YAY!! 🥹 Aku janji bakal jadi moodbooster kamu tiap hari!");
@@ -186,6 +212,7 @@
 
     window.onload = () => {
       showSlide(0);
+      document.getElementById("surat").innerText = `Hai Kalila...\n\nHari ini, apa pun yang kamu rasain — capek, bingung, overthinking — coba tarik napas sebentar...\n\nTerus ingat satu hal:\nKamu itu hebat. Kamu itu kuat.\n\nNggak semua orang bisa punya senyum selembut kamu,\ndan semangat sekeren kamu yang terus maju, walau kadang hati sendiri pun nggak diajak kompromi.\n\nKalau hari ini kamu lelah, boleh istirahat ya...\nTapi jangan pernah mikir kamu sendirian. Karena ada aku di sini — yang selalu senang tiap kamu cerita, senyum, atau sekadar bilang \"lagi nggak apa-apa\".\n\nKamu itu, Kalila...\nUdah bikin dunia seseorang jadi lebih hangat — termasuk duniaku. ☀️\n\nJadi... tetap semangat ya.\nPelan-pelan aja, asal kamu tetap jalan. Dan jangan lupa...\n\nAku bangga sama kamu. 🩷`;
     };
   </script>
 </body>
