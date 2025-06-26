@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hai Kalila ✨</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #f0faff);
+      color: #333;
+      overflow: hidden;
+    }
+
+    .slide-container {
+      display: flex;
+      width: 500%;
+      height: 100vh;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .slide {
+      flex: 1 0 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin: 10px;
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+
+    button {
+      background: #ffaad4;
+      border: none;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    button:hover {
+      background: #ffc1e3;
+      transform: scale(1.05);
+    }
+
+    img {
+      max-width: 70%;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-buttons {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav-buttons button {
+      background: #fff;
+      border: 2px solid #ffaad4;
+      color: #ff5caa;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="slider" class="slide-container">
+    <!-- Slide 1 -->
+    <div class="slide" style="background:#ffe6f0;">
+      <h1>✨ Pssst... Kalila, kamu di sana? ✨</h1>
+      <h2>Ada yang pengen bilang sesuatu~</h2>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" style="background:#fef3f8;">
+      <h1>Sudah makan belum?</h1>
+      <div class="button-group">
+        <button onclick="playSound()">Udah, tapi pengen disuapin 😳</button>
+        <button onclick="playSound()">Belum, nunggu kamu ngajak 😋</button>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" style="background:#f0faff;">
+      <h1>Kamu lagi mood-nya kayak apa nih?</h1>
+      <div class="button-group">
+        <button onclick="playSound()">Lagi salting liat ini 🙈</button>
+        <button onclick="playSound()">Lagi pengen dipeluk 🥺</button>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide" style="background:#e0f7ff;">
+      <h1>Kamu itu kayak senja 🌅</h1>
+      <h2>Selalu bikin tenang dan hangat hati ❤️</h2>
+      <img src="https://placekitten.com/300/300" alt="Foto Kalila (placeholder)">
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide" style="background:#fff0f5;">
+      <h1>Boleh nggak...</h1>
+      <h2>...aku jadi penyemangat harian Kalila? 😳💕</h2>
+      <div class="button-group">
+        <button onclick="confess()">Boleeeh 🥰</button>
+        <button onclick="alert('Yahh... 😢 Tapi tetep semangat ya Kalila!')">Ehm, nanti aja 🙈</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-buttons">
+    <button onclick="nextSlide()">➡️ Lanjut</button>
+  </div>
+
+  <audio id="boing" src="https://www.myinstants.com/media/sounds/boing.mp3"></audio>
+  <audio id="cheer" src="https://www.myinstants.com/media/sounds/tada-fanfare.mp3"></audio>
+
+  <script>
+    let currentSlide = 0;
+
+    function nextSlide() {
+      currentSlide++;
+      if (currentSlide > 4) currentSlide = 0;
+      document.getElementById("slider").style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function playSound() {
+      document.getElementById("boing").play();
+    }
+
+    function confess() {
+      document.getElementById("cheer").play();
+      alert("YEAAAY!! 🥹 Kamu berhasil bikin aku senyum satu harian!");
+    }
+
+    // Auto-play intro sound after load
+    window.onload = () => {
+      setTimeout(() => playSound(), 1000);
+    }
+  </script>
+</body>
+</html>
