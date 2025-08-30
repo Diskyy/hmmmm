@@ -3,135 +3,313 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KalilaLand 💖</title>
+  <title>KalilaLand 💖 - Reimagined</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(135deg, #ffe6ec, #e0f7ff);
-      overflow: hidden;
-      color: #333;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(45deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    #main {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      overflow-y: auto; /* FIX: Supaya konten bisa di-scroll */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px 20px 80px; /* FIX: Tambah padding bawah agar tombol tidak ketutup */
-      animation: fadeIn 0.8s ease;
-      z-index: 2;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      padding: 12px 24px;
-      border: none;
-      background-color: #ffaad4;
-      color: white;
-      border-radius: 30px;
-      font-size: 16px;
-      margin: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 3;
-    }
-
-    .btn:hover {
-      background-color: #ffa0cc;
-      transform: scale(1.05);
-    }
-
-    .image {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      margin: 20px 0;
-    }
-
-    #stars, #snow, #hearts {
+    /* Animated background particles */
+    .bg-particles {
       position: fixed;
-      width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
     }
 
-    footer {
+    .particle {
       position: absolute;
-      bottom: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float-particle 15s infinite linear;
+    }
+
+    @keyframes float-particle {
+      0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(100px) scale(1);
+        opacity: 0;
+      }
+    }
+
+    /* Main container with glassmorphism */
+    #main {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      text-align: center;
+      animation: slideIn 1s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border: none;
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      color: white;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      margin: 8px;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    .image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      margin: 20px auto;
+      transition: all 0.3s ease;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .image:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Typing animation */
+    .typing-container {
+      text-align: left;
+      max-width: 100%;
+      margin: 20px 0;
+    }
+
+    #typing {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+      white-space: pre-wrap;
+      border-right: 2px solid #667eea;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { border-right-color: #667eea; }
+      51%, 100% { border-right-color: transparent; }
+    }
+
+    /* Floating emojis */
+    .floating-emoji {
+      position: fixed;
+      font-size: 24px;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatUp 8s ease-out infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Success animation */
+    .success-animation {
+      animation: successPulse 0.6s ease-out;
+    }
+
+    @keyframes successPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 20px;
       width: 100%;
       text-align: center;
       font-size: 0.9rem;
-      color: #777;
+      color: rgba(255, 255, 255, 0.8);
       z-index: 3;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Responsive design */
+    @media (max-width: 600px) {
+      #main {
+        width: 95%;
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .btn {
+        padding: 12px 25px;
+        font-size: 14px;
+      }
+      
+      .image {
+        width: 150px;
+        height: 150px;
+      }
     }
 
-    .emoji {
-      position: absolute;
-      font-size: 24px;
-      animation: float 6s linear infinite;
+    /* Loading screen */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease;
     }
 
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(1); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    .loading-text {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      animation: loadingPulse 1.5s ease-in-out infinite;
     }
 
-    .heart {
-      position: absolute;
-      color: pink;
-      font-size: 20px;
-      animation: heart-float 4s ease-in infinite;
+    @keyframes loadingPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
     }
 
-    @keyframes heart-float {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-150px) scale(1.5); opacity: 0; }
+    /* Hide loading after page loads */
+    .loaded .loading {
+      opacity: 0;
+      pointer-events: none;
     }
   </style>
 </head>
 <body>
-  <div id="stars"></div>
-  <div id="snow"></div>
-  <div id="hearts"></div>
+  <div class="loading">
+    <div class="loading-text">Memuat keajaiban... ✨</div>
+  </div>
+
+  <div class="bg-particles"></div>
 
   <div id="main">
     <h1>Apanihh?? 😳</h1>
-    <button class="btn" onclick="startStory()">Tekan aku dulu dong 🙈</button>
+    <p>Ada yang spesial nih buat kamu...</p>
+    <button class="btn" onclick="startStory()">✨ Buka keajaibannya</button>
   </div>
 
   <footer>
-    Dibuat dengan penuh salting 💖 oleh seseorang yang gabut gatau mau ngapain.
+    Dibuat dengan penuh cinta 💖 untuk seseorang yang istimewa
   </footer>
 
   <audio id="boing" src="https://www.myinstants.com/media/sounds/awwwwwwwwwwwwww-notification_sound-1489722.mp3"></audio>
@@ -140,124 +318,294 @@
   <script>
     const main = document.getElementById('main');
     const music = document.getElementById('music');
+    const bgParticles = document.querySelector('.bg-particles');
 
     let step = 0;
+    let particleInterval;
+    let emojiInterval;
+
+    // Initialize background particles
+    function createBackgroundParticles() {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + 'vw';
+          particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
+          particle.style.animationDelay = Math.random() * 15 + 's';
+          particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+          bgParticles.appendChild(particle);
+        }, i * 100);
+      }
+    }
+
+    // Hide loading screen after page loads
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+        createBackgroundParticles();
+      }, 1000);
+    });
 
     const slides = [
       {
-        html: `<h1>Hai Kalila... 😳</h1><p>Aku cuma pengen tahu satu hal...</p><button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+        html: `<h1>Hai Kalila... 😳</h1>
+               <p>Aku mau berbagi sesuatu yang spesial denganmu...</p>
+               <div style="font-size: 4rem; margin: 20px 0; animation: pulse 2s infinite;">💎</div>
+               <button class="btn" onclick="nextSlide()">💫 Mari kita mulai</button>`
       },
       {
         html: `<h1>Kalila, kamu udah senyum hari ini?</h1>
-              <button class="btn" onclick="playBoing()">Belum 😶</button>
-              <button class="btn" onclick="playBoing()">Udah... Tapi mau lagi 😚</button>
-              <button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+               <p>Karena senyummu itu adalah salah satu keajaiban dunia lho...</p>
+               <button class="btn" onclick="nextSlide('belum')">😶 Belum sempat</button>
+               <button class="btn" onclick="nextSlide('udah')">😊 Udah... tapi mau lagi</button>
+               <button class="btn" onclick="nextSlide('banyak')">😄 Udah banyak banget!</button>`
       },
       {
-        html: `<h1>Kamu lagi ngerasa...</h1>
-              <button class="btn" onclick="nextSlide()">✨ Butuh semangat</button>
-              <button class="btn" onclick="nextSlide()">❤️ Butuh disayang</button>
-              <button class="btn" onclick="nextSlide()">😳 Butuh dibilang cantik</button>`
+        html: `<h1>Hari ini kamu butuh...</h1>
+               <p>Pilih yang paling pas dengan perasaanmu sekarang</p>
+               <button class="btn" onclick="nextSlide('semangat')" style="background: linear-gradient(135deg, #ffa726, #ff7043);">⚡ Semangat & Energi</button>
+               <button class="btn" onclick="nextSlide('pelukan')" style="background: linear-gradient(135deg, #42a5f5, #478ed1);">🤗 Pelukan Virtual</button>
+               <button class="btn" onclick="nextSlide('pujian')" style="background: linear-gradient(135deg, #ab47bc, #8e24aa);">💝 Kata-kata Manis</button>`
       },
       {
-        html: `<h1>Oke... dengar baik-baik ya 🥺</h1>
-              <p>Kalila itu versi limited edition dari ketenangan + keimutan.</p>
-              <img class="image" src="https://files.catbox.moe/0y64iw.png" alt="Kalila"/>
-              <button class="btn" onclick="nextSlide()">👉 Lanjut</button>`
+        html: `<h1>Sebentar ya... 🥺</h1>
+               <p>Ada yang mau aku tunjukkan...</p>
+               <div style="margin: 30px 0;">
+                 <div style="width: 60px; height: 60px; border: 4px solid #fff; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+               </div>
+               <button class="btn" onclick="nextSlide()" style="opacity: 0.7; pointer-events: none;">Tunggu sebentar...</button>`,
+        autoNext: 3000
       },
       {
-        html: `<h1 id="typing" style="white-space:pre-wrap;"></h1>
-              <button class="btn" onclick="nextSlide()">👉 Lanjut</button>`,
+        html: `<h1>Ini dia orangnya! ✨</h1>
+               <p>Yang selalu bikin hari-hari jadi lebih berwarna</p>
+               <img class="image" src="https://files.catbox.moe/0y64iw.png" alt="Kalila"/>
+               <p style="font-weight: 600; color: #667eea;">Limited edition dari ketenangan + keimutan 💎</p>
+               <button class="btn" onclick="nextSlide()">🌟 Lanjut ke surprise</button>`
+      },
+      {
+        html: `<h1>Pesan Khusus Untukmu</h1>
+               <div class="typing-container">
+                 <div id="typing"></div>
+               </div>
+               <button class="btn" onclick="nextSlide()" id="nextBtn" style="opacity: 0; pointer-events: none;">💖 Lanjut</button>`,
         isTyping: true,
-        message: `Hai Kalila...\n\nHari ini, apa pun yang kamu rasain — capek, bingung, overthinking — coba tarik napas sebentar...\n\nTerus ingat satu hal:\nKamu itu hebat. Kamu itu kuat.\n\nNggak semua orang bisa punya senyum selembut kamu,\ndan semangat sekeren kamu yang terus maju, walau kadang hati sendiri pun nggak diajak kompromi.\n\nKalau hari ini kamu lelah, boleh istirahat ya...\nTapi jangan pernah mikir kamu sendirian. Karena ada aku di sini — yang selalu senang tiap kamu cerita, senyum, atau sekadar bilang "lagi nggak apa-apa".\n\nKamu itu, Kalila...\nUdah bikin dunia seseorang jadi lebih hangat — termasuk duniaku. ☀️\n\nJadi... tetap semangat ya.\nPelan-pelan aja, asal kamu tetap jalan. Dan jangan lupa...\n\nAku bangga sama kamu. 🩷`
+        message: `Halo Kalila yang cantik... ✨
+
+Aku mau bilang sesuatu nih...
+
+Kamu tau nggak? Setiap hari kamu berhasil melewati tantangan adalah bukti kalau kamu itu LUAR BIASA.
+
+Mungkin kadang kamu merasa biasa aja, atau bahkan merasa kurang... Tapi coba deh, liat cermin sebentar.
+
+Yang kamu liat di sana adalah seseorang yang:
+• Punya senyum yang bisa bikin orang lain ikutan bahagia
+• Punya hati yang begitu lembut dan pengertian
+• Selalu berusaha jadi versi terbaik dari dirinya sendiri
+
+Kalau hari ini kamu lelah, boleh istirahat.
+Kalau kamu sedih, boleh nangis.
+Kalau kamu bingung, boleh diam sejenak.
+
+Tapi jangan pernah lupa...
+Kamu itu berharga. Sangat berharga.
+
+Dan aku? Aku bangga banget sama kamu. 🌟`
       },
       {
-        html: `<h1>Boleh nggak aku jadi penyemangat harian kamu?</h1>
-              <button class="btn" onclick="ending(true)">Boleeeeh 😍</button>
-              <button class="btn" onclick="ending(false)">Apasihhh 😅</button>`
+        html: `<h1>Satu pertanyaan terakhir... 💕</h1>
+               <p>Boleh nggak aku jadi teman yang selalu ngingetin kalau kamu itu amazing?</p>
+               <div style="margin: 20px 0;">
+                 <div style="font-size: 3rem; animation: pulse 1.5s infinite;">🥺</div>
+               </div>
+               <button class="btn" onclick="ending(true)" style="background: linear-gradient(135deg, #4CAF50, #45a049);">💚 Boleh banget!</button>
+               <button class="btn" onclick="ending(false)" style="background: linear-gradient(135deg, #FFA726, #FF7043);">😅 Ah masa sih...</button>`
       }
     ];
 
+    let currentResponse = '';
+
     function startStory() {
-      music.play();
-      nextSlide();
-      setInterval(spawnEmoji, 1500);
-      setInterval(spawnHeart, 1000);
-      setInterval(spawnSnowflake, 300);
+      try {
+        music.play();
+      } catch (e) {
+        console.log('Music autoplay blocked');
+      }
+      
+      main.classList.add('success-animation');
+      setTimeout(() => {
+        main.classList.remove('success-animation');
+        nextSlide();
+      }, 600);
+      
+      startFloatingEmojis();
     }
 
-    function nextSlide() {
+    function nextSlide(response = '') {
+      if (response) {
+        currentResponse = response;
+        addFloatingResponse(response);
+      }
+
       if (step < slides.length) {
         const currentSlide = slides[step];
-        main.innerHTML = currentSlide.html;
+        
+        // Smooth transition
+        main.style.opacity = '0';
+        main.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          main.innerHTML = currentSlide.html;
+          main.style.opacity = '1';
+          main.style.transform = 'translateY(0)';
 
-        main.style.animation = "none";
-        void main.offsetWidth;
-        main.style.animation = null;
+          if (currentSlide.isTyping && currentSlide.message) {
+            typeText(currentSlide.message, document.getElementById('typing'), () => {
+              const nextBtn = document.getElementById('nextBtn');
+              if (nextBtn) {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.pointerEvents = 'auto';
+              }
+            });
+          }
 
-        if (currentSlide.isTyping && currentSlide.message) {
-          typeText(currentSlide.message, document.getElementById('typing'));
-        }
+          if (currentSlide.autoNext) {
+            setTimeout(() => {
+              nextSlide();
+            }, currentSlide.autoNext);
+          }
+        }, 300);
 
         step++;
       }
     }
 
-    function typeText(text, element, speed = 30) {
+    function typeText(text, element, callback, speed = 50) {
       let i = 0;
+      element.innerHTML = '';
+      
       function typing() {
         if (i < text.length) {
-          element.innerText += text.charAt(i);
+          element.innerHTML += text.charAt(i);
           i++;
           setTimeout(typing, speed);
+        } else if (callback) {
+          callback();
         }
       }
       typing();
     }
 
+    function addFloatingResponse(response) {
+      const responses = {
+        'belum': '💪',
+        'udah': '🥰',
+        'banyak': '😍',
+        'semangat': '⚡',
+        'pelukan': '🤗',
+        'pujian': '💝'
+      };
+      
+      const emoji = responses[response] || '💖';
+      createFloatingEmoji(emoji, true);
+    }
+
     function playBoing() {
-      document.getElementById("boing").play();
+      try {
+        const boing = document.getElementById("boing");
+        boing.currentTime = 0;
+        boing.play();
+      } catch (e) {
+        console.log('Sound effect blocked');
+      }
     }
 
     function ending(choice) {
       if (choice) {
-        alert("YAY!! Siapp jadi moodbooster kamu mbakk!");
+        main.innerHTML = `
+          <h1 style="color: #4CAF50;">YEAYYYY! 🎉</h1>
+          <p>Mulai sekarang, aku bakal jadi reminder harian kamu!</p>
+          <div style="font-size: 4rem; margin: 20px 0; animation: pulse 1s infinite;">🌟</div>
+          <p style="font-weight: 600;">Setiap hari aku akan ngingetin:</p>
+          <p>"Kalila itu amazing, strong, dan deserves all the good things!" 💖</p>
+          <button class="btn" onclick="location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2);">🔄 Ulangi lagi</button>
+        `;
+        createConfetti();
       } else {
-        alert("Gapapa dehhhh...  😌");
+        main.innerHTML = `
+          <h1>Gapapa kok... 😌</h1>
+          <p>Tapi tetep ingat ya, kamu itu istimewa!</p>
+          <div style="font-size: 3rem; margin: 20px 0;">😊</div>
+          <p>Kapan aja kamu butuh reminder, aku ada di sini! 💕</p>
+          <button class="btn" onclick="location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2);">🔄 Mulai lagi</button>
+        `;
+      }
+      playBoing();
+    }
+
+    function startFloatingEmojis() {
+      const emojis = ["💖", "🌸", "🥰", "😚", "💫", "💐", "✨", "🌟", "💕", "🦋"];
+      
+      emojiInterval = setInterval(() => {
+        const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+        createFloatingEmoji(emoji);
+      }, 2000);
+    }
+
+    function createFloatingEmoji(emoji, special = false) {
+      const emojiEl = document.createElement("div");
+      emojiEl.className = "floating-emoji";
+      emojiEl.style.left = Math.random() * 90 + "vw";
+      emojiEl.style.fontSize = (special ? 30 : Math.random() * 10 + 20) + "px";
+      emojiEl.innerText = emoji;
+      
+      if (special) {
+        emojiEl.style.animationDuration = "3s";
+        emojiEl.style.zIndex = "10";
+      } else {
+        emojiEl.style.animationDuration = Math.random() * 4 + 6 + "s";
+      }
+      
+      document.body.appendChild(emojiEl);
+      
+      setTimeout(() => {
+        if (emojiEl.parentNode) {
+          emojiEl.remove();
+        }
+      }, special ? 3000 : 10000);
+    }
+
+    function createConfetti() {
+      const colors = ['#ff6b9d', '#667eea', '#764ba2', '#ffa726', '#42a5f5'];
+      
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.style.position = 'fixed';
+          confetti.style.width = '10px';
+          confetti.style.height = '10px';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.top = '-10px';
+          confetti.style.zIndex = '1000';
+          confetti.style.animation = 'floatUp 3s ease-out forwards';
+          document.body.appendChild(confetti);
+          
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 50);
       }
     }
 
-    const emojis = ["💖", "🌸", "🥰", "😚", "💫", "💐", "😳"];
-    function spawnEmoji() {
-      const emoji = document.createElement("div");
-      emoji.className = "emoji";
-      emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.top = "100vh";
-      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-      document.body.appendChild(emoji);
-      setTimeout(() => emoji.remove(), 6000);
-    }
-
-    function spawnHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.top = Math.random() * 80 + 20 + "vh";
-      heart.innerText = "❤️";
-      document.getElementById('hearts').appendChild(heart);
-      setTimeout(() => heart.remove(), 4000);
-    }
-
-    function spawnSnowflake() {
-      const snow = document.createElement("div");
-      snow.className = "emoji";
-      snow.innerText = "❄️";
-      snow.style.left = Math.random() * 100 + "vw";
-      snow.style.fontSize = Math.random() * 10 + 10 + "px";
-      snow.style.animationDuration = Math.random() * 3 + 5 + "s";
-      document.getElementById("snow").appendChild(snow);
-      setTimeout(() => snow.remove(), 8000);
-    }
+    // Add spinning animation for loading
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
