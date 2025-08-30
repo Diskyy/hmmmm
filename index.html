@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KalilaLand 💖 - Reimagined</title>
+  <title>KalilaLand 💖 - Cinematic Experience</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
     
@@ -21,7 +21,7 @@
       position: relative;
     }
 
-    /* Animated background particles */
+    /* Enhanced animated background */
     .bg-particles {
       position: fixed;
       top: 0;
@@ -41,7 +41,7 @@
 
     @keyframes float-particle {
       0% {
-        transform: translateY(100vh) translateX(0) scale(0);
+        transform: translateY(100vh) translateX(0) scale(0) rotate(0deg);
         opacity: 0;
       }
       10% {
@@ -51,76 +51,108 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(-10vh) translateX(100px) scale(1);
+        transform: translateY(-10vh) translateX(100px) scale(1) rotate(360deg);
         opacity: 0;
       }
     }
 
-    /* Main container with glassmorphism */
+    /* Cinematic container with enhanced glassmorphism */
     #main {
       position: relative;
       width: 90%;
-      max-width: 500px;
+      max-width: 550px;
       margin: 50px auto;
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(20px);
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-radius: 35px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      padding: 45px 35px;
       text-align: center;
-      animation: slideIn 1s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 2;
-      min-height: 400px;
+      min-height: 500px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    /* Cinematic entrance animation */
+    .main-enter {
+      opacity: 0;
+      transform: translateY(80px) scale(0.85) rotateX(20deg);
+      filter: blur(10px);
+    }
+
+    .main-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+      filter: blur(0px);
+    }
+
+    /* Slide transition effects */
+    .slide-exit {
+      opacity: 0;
+      transform: translateX(-100px) scale(0.9);
+      filter: blur(5px);
+    }
+
+    .slide-enter {
+      opacity: 0;
+      transform: translateX(100px) scale(0.9);
+      filter: blur(5px);
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 20px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 25px;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+      animation: gradientShift 3s ease-in-out infinite;
+      line-height: 1.2;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     p {
-      font-size: 1.1rem;
-      color: #444;
-      margin-bottom: 25px;
-      line-height: 1.6;
+      font-size: 1.15rem;
+      color: rgba(68, 68, 68, 0.9);
+      margin-bottom: 30px;
+      line-height: 1.7;
       font-weight: 400;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
     }
 
+    /* Enhanced button with multiple layers */
     .btn {
-      padding: 15px 30px;
+      padding: 18px 35px;
       border: none;
       background: linear-gradient(135deg, #ff6b9d, #c44569);
       color: white;
       border-radius: 50px;
       font-size: 16px;
       font-weight: 600;
-      margin: 8px;
+      margin: 10px;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 
+        0 12px 30px rgba(255, 107, 157, 0.4),
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
       position: relative;
       overflow: hidden;
+      transform: translateZ(0);
     }
 
     .btn::before {
@@ -130,138 +162,152 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     .btn:hover::before {
       left: 100%;
     }
 
+    .btn:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
     .btn:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 
+        0 20px 45px rgba(255, 107, 157, 0.5),
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
     .btn:active {
-      transform: translateY(-1px) scale(1.02);
+      transform: translateY(-2px) scale(1.05);
+      transition: all 0.1s ease;
     }
 
+    /* Enhanced image with cinematic effects */
     .image {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
-      border: 5px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-      margin: 20px auto;
-      transition: all 0.3s ease;
-      animation: pulse 2s ease-in-out infinite;
+      border: 6px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(255, 255, 255, 0.2),
+        inset 0 2px 10px rgba(255, 255, 255, 0.2);
+      margin: 25px auto;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      animation: gentlePulse 3s ease-in-out infinite;
+      position: relative;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    .image::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      background: linear-gradient(45deg, #ff6b9d, #667eea, #764ba2, #f093fb);
+      border-radius: 50%;
+      z-index: -1;
+      animation: rotateBorder 4s linear infinite;
+    }
+
+    @keyframes rotateBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.05) rotate(2deg); }
     }
 
     .image:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+      transform: scale(1.15) rotate(8deg);
+      box-shadow: 
+        0 30px 70px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(255, 255, 255, 0.3);
     }
 
-    /* Typing animation */
+    /* Enhanced typing animation */
     .typing-container {
       text-align: left;
       max-width: 100%;
-      margin: 20px 0;
+      margin: 25px 0;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
     }
 
     #typing {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #333;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #2c3e50;
       white-space: pre-wrap;
-      border-right: 2px solid #667eea;
-      animation: blink 1s infinite;
+      border-right: 3px solid #667eea;
+      animation: smoothBlink 1.2s infinite;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
     }
 
-    @keyframes blink {
-      0%, 50% { border-right-color: #667eea; }
-      51%, 100% { border-right-color: transparent; }
+    @keyframes smoothBlink {
+      0%, 45% { border-right-color: #667eea; opacity: 1; }
+      50%, 95% { border-right-color: transparent; opacity: 0.7; }
     }
 
-    /* Floating emojis */
+    /* Floating emojis with better physics */
     .floating-emoji {
       position: fixed;
-      font-size: 24px;
+      font-size: 28px;
       pointer-events: none;
       z-index: 1;
-      animation: floatUp 8s ease-out infinite;
+      animation: cinematicFloat 12s ease-out infinite;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    @keyframes floatUp {
+    @keyframes cinematicFloat {
       0% {
-        transform: translateY(100vh) rotate(0deg);
+        transform: translateY(110vh) rotate(0deg) scale(0);
         opacity: 0;
       }
-      10% {
+      5% {
         opacity: 1;
+        transform: translateY(100vh) rotate(0deg) scale(1);
       }
-      90% {
+      50% {
+        transform: translateY(50vh) rotate(180deg) scale(1.2);
+        opacity: 0.8;
+      }
+      95% {
         opacity: 1;
       }
       100% {
-        transform: translateY(-20vh) rotate(360deg);
+        transform: translateY(-20vh) rotate(360deg) scale(0.8);
         opacity: 0;
       }
     }
 
-    /* Success animation */
-    .success-animation {
-      animation: successPulse 0.6s ease-out;
-    }
-
-    @keyframes successPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-
-    /* Footer */
-    footer {
-      position: fixed;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      z-index: 3;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Responsive design */
-    @media (max-width: 600px) {
-      #main {
-        width: 95%;
-        padding: 30px 20px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .btn {
-        padding: 12px 25px;
-        font-size: 14px;
-      }
-      
-      .image {
-        width: 150px;
-        height: 150px;
-      }
-    }
-
-    /* Loading screen */
+    /* Enhanced loading screen */
     .loading {
       position: fixed;
       top: 0;
@@ -273,225 +319,502 @@
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      transition: opacity 0.5s ease;
+      transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .loading-content {
+      text-align: center;
     }
 
     .loading-text {
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 600;
-      animation: loadingPulse 1.5s ease-in-out infinite;
+      animation: loadingFloat 2s ease-in-out infinite;
+      margin-bottom: 30px;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
     }
 
-    @keyframes loadingPulse {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: smoothSpin 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+      margin: 0 auto;
     }
 
-    /* Hide loading after page loads */
+    @keyframes loadingFloat {
+      0%, 100% { 
+        opacity: 0.7; 
+        transform: translateY(0px) scale(1); 
+      }
+      50% { 
+        opacity: 1; 
+        transform: translateY(-10px) scale(1.05); 
+      }
+    }
+
+    @keyframes smoothSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     .loaded .loading {
       opacity: 0;
       pointer-events: none;
+      transform: scale(1.1);
+    }
+
+    /* Cinematic reveal effects */
+    .reveal-text {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .reveal-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      transform: translateX(-100%);
+      animation: reveal 2s ease-out forwards;
+    }
+
+    @keyframes reveal {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Smooth fade transitions */
+    .fade-in {
+      animation: fadeInSmooth 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .fade-out {
+      animation: fadeOutSmooth 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fadeInSmooth {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+        filter: blur(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes fadeOutSmooth {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.95);
+        filter: blur(5px);
+      }
+    }
+
+    /* Enhanced special effects */
+    .magic-sparkle {
+      position: absolute;
+      font-size: 20px;
+      pointer-events: none;
+      animation: sparkle 2s ease-out forwards;
+    }
+
+    @keyframes sparkle {
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(360deg) translateY(-50px);
+      }
+    }
+
+    /* Loading progress bar */
+    .progress-container {
+      width: 300px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b9d, #667eea);
+      border-radius: 10px;
+      width: 0%;
+      animation: fillProgress 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fillProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    /* Enhanced decorative elements */
+    .decorative-icon {
+      font-size: 4.5rem;
+      margin: 25px 0;
+      animation: decorativeFloat 2.5s ease-in-out infinite;
+      text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+    }
+
+    @keyframes decorativeFloat {
+      0%, 100% { 
+        transform: translateY(0px) rotate(0deg) scale(1);
+      }
+      50% { 
+        transform: translateY(-15px) rotate(5deg) scale(1.1);
+      }
+    }
+
+    /* Responsive enhancements */
+    @media (max-width: 600px) {
+      #main {
+        width: 95%;
+        padding: 35px 25px;
+        margin: 30px auto;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .btn {
+        padding: 15px 28px;
+        font-size: 15px;
+        margin: 8px;
+      }
+      
+      .image {
+        width: 170px;
+        height: 170px;
+      }
+
+      .decorative-icon {
+        font-size: 3.5rem;
+      }
+    }
+
+    /* Footer enhancement */
+    footer {
+      position: fixed;
+      bottom: 25px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.9);
+      z-index: 3;
+      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+      font-weight: 300;
+    }
+
+    /* Confetti enhancement */
+    .confetti-piece {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      z-index: 1000;
+      animation: confettiFall 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg) scale(0);
+        opacity: 0;
+      }
+    }
+
+    /* Screen transition overlay */
+    .transition-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .transition-overlay.active {
+      opacity: 0.7;
+    }
+
+    /* Heart beat animation */
+    .heartbeat {
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.05); }
     }
   </style>
 </head>
 <body>
   <div class="loading">
-    <div class="loading-text">Memuat keajaiban... ✨</div>
+    <div class="loading-content">
+      <div class="loading-text">Menyiapkan sesuatu yang spesial... ✨</div>
+      <div class="loading-spinner"></div>
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
   </div>
 
   <div class="bg-particles"></div>
+  <div class="transition-overlay"></div>
 
-  <div id="main">
-    <h1>Apanihh?? 😳</h1>
-    <p>Ada yang spesial nih buat kamu...</p>
-    <button class="btn" onclick="startStory()">✨ Buka keajaibannya</button>
+  <div id="main" class="main-enter">
+    <h1>Halo Kalila! 😳</h1>
+    <p>Ada sesuatu yang spesial menunggu...</p>
+    <button class="btn" onclick="startJourney()">✨ Mari kita mulai</button>
   </div>
 
   <footer>
-    Dibuat dengan penuh cinta 💖 untuk seseorang yang istimewa
+    Dibuat dengan perhatian 💖 untuk teman yang berharga
   </footer>
 
-  <audio id="boing" src="https://www.myinstants.com/media/sounds/awwwwwwwwwwwwww-notification_sound-1489722.mp3"></audio>
   <audio id="music" src="https://files.catbox.moe/099jce.mp3" loop></audio>
 
   <script>
     const main = document.getElementById('main');
     const music = document.getElementById('music');
     const bgParticles = document.querySelector('.bg-particles');
+    const transitionOverlay = document.querySelector('.transition-overlay');
 
     let step = 0;
-    let particleInterval;
-    let emojiInterval;
+    let currentResponse = '';
 
-    // Initialize background particles
-    function createBackgroundParticles() {
-      for (let i = 0; i < 50; i++) {
-        setTimeout(() => {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          particle.style.left = Math.random() * 100 + 'vw';
-          particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
-          particle.style.animationDelay = Math.random() * 15 + 's';
-          particle.style.animationDuration = Math.random() * 10 + 10 + 's';
-          bgParticles.appendChild(particle);
-        }, i * 100);
-      }
-    }
-
-    // Hide loading screen after page loads
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.body.classList.add('loaded');
-        createBackgroundParticles();
-      }, 1000);
-    });
-
-    const slides = [
+    const cinematicSlides = [
       {
-        html: `<h1>Hai Kalila... 😳</h1>
-               <p>Aku mau berbagi sesuatu yang spesial denganmu...</p>
-               <div style="font-size: 4rem; margin: 20px 0; animation: pulse 2s infinite;">💎</div>
-               <button class="btn" onclick="nextSlide()">💫 Mari kita mulai</button>`
+        html: `<h1 class="reveal-text">Hai Kalila yang baik hati... 😊</h1>
+               <p>Sebelum memulai, aku mau sharing sesuatu yang menarik denganmu...</p>
+               <div class="decorative-icon">🌟</div>
+               <button class="btn" onclick="nextSlide()">💫 Ayo dengarkan</button>`
       },
       {
-        html: `<h1>Kalila, kamu udah senyum hari ini?</h1>
-               <p>Karena senyummu itu adalah salah satu keajaiban dunia lho...</p>
-               <button class="btn" onclick="nextSlide('belum')">😶 Belum sempat</button>
-               <button class="btn" onclick="nextSlide('udah')">😊 Udah... tapi mau lagi</button>
-               <button class="btn" onclick="nextSlide('banyak')">😄 Udah banyak banget!</button>`
+        html: `<h1>Kalila, gimana kabarmu hari ini?</h1>
+               <p>Aku penasaran dengan hari yang kamu lalui...</p>
+               <button class="btn" onclick="nextSlide('baik')" style="background: linear-gradient(135deg, #4CAF50, #45a049);">😊 Alhamdulillah baik</button>
+               <button class="btn" onclick="nextSlide('biasa')" style="background: linear-gradient(135deg, #FFA726, #FF7043);">😐 Biasa aja sih</button>
+               <button class="btn" onclick="nextSlide('capek')" style="background: linear-gradient(135deg, #42a5f5, #478ed1);">😴 Agak capek nih</button>`
       },
       {
-        html: `<h1>Hari ini kamu butuh...</h1>
-               <p>Pilih yang paling pas dengan perasaanmu sekarang</p>
-               <button class="btn" onclick="nextSlide('semangat')" style="background: linear-gradient(135deg, #ffa726, #ff7043);">⚡ Semangat & Energi</button>
-               <button class="btn" onclick="nextSlide('pelukan')" style="background: linear-gradient(135deg, #42a5f5, #478ed1);">🤗 Pelukan Virtual</button>
-               <button class="btn" onclick="nextSlide('pujian')" style="background: linear-gradient(135deg, #ab47bc, #8e24aa);">💝 Kata-kata Manis</button>`
+        html: `<h1>Kalila butuh apa hari ini?</h1>
+               <p>Pilih yang paling cocok sama mood kamu sekarang</p>
+               <button class="btn" onclick="nextSlide('motivasi')" style="background: linear-gradient(135deg, #ffa726, #ff7043);">⚡ Motivasi & Semangat</button>
+               <button class="btn" onclick="nextSlide('support')" style="background: linear-gradient(135deg, #42a5f5, #478ed1);">🤗 Dukungan & Pengertian</button>
+               <button class="btn" onclick="nextSlide('appreciation')" style="background: linear-gradient(135deg, #ab47bc, #8e24aa);">💝 Apresiasi & Pengakuan</button>`
       },
       {
-        html: `<h1>Sebentar ya... 🥺</h1>
-               <p>Ada yang mau aku tunjukkan...</p>
-               <div style="margin: 30px 0;">
-                 <div style="width: 60px; height: 60px; border: 4px solid #fff; border-top: 4px solid #667eea; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+        html: `<h1>Tunggu sebentar ya... 🥺</h1>
+               <p>Aku lagi menyiapkan sesuatu yang pas buat kamu</p>
+               <div class="decorative-icon">⏳</div>
+               <div style="margin: 20px 0;">
+                 <div style="width: 70px; height: 70px; border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid #667eea; border-radius: 50%; animation: smoothSpin 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite; margin: 0 auto;"></div>
                </div>
-               <button class="btn" onclick="nextSlide()" style="opacity: 0.7; pointer-events: none;">Tunggu sebentar...</button>`,
-        autoNext: 3000
+               <p style="font-size: 0.9rem; opacity: 0.8;">Sedang memproses...</p>`,
+        autoNext: 4000
       },
       {
-        html: `<h1>Ini dia orangnya! ✨</h1>
-               <p>Yang selalu bikin hari-hari jadi lebih berwarna</p>
+        html: `<h1 class="reveal-text">Inilah orangnya! ✨</h1>
+               <p>Seseorang yang selalu membawa kebaikan ke mana pun dia pergi</p>
                <img class="image" src="https://files.catbox.moe/0y64iw.png" alt="Kalila"/>
-               <p style="font-weight: 600; color: #667eea;">Limited edition dari ketenangan + keimutan 💎</p>
-               <button class="btn" onclick="nextSlide()">🌟 Lanjut ke surprise</button>`
+               <p style="font-weight: 600; color: #667eea; text-shadow: 0 2px 10px rgba(255,255,255,0.5);">
+                 Kombinasi langka: kebaikan hati + kecerdasan + ketulusan 💎
+               </p>
+               <button class="btn" onclick="nextSlide()">🌟 Lanjut ke pesan spesial</button>`
       },
       {
-        html: `<h1>Pesan Khusus Untukmu</h1>
+        html: `<h1>Pesan Personal untuk Kalila</h1>
                <div class="typing-container">
                  <div id="typing"></div>
                </div>
                <button class="btn" onclick="nextSlide()" id="nextBtn" style="opacity: 0; pointer-events: none;">💖 Lanjut</button>`,
         isTyping: true,
-        message: `Halo Kalila yang cantik... ✨
+        message: `Halo Kalila yang baik hati... ✨
 
-Aku mau bilang sesuatu nih...
+Aku mau share sesuatu nih...
 
-Kamu tau nggak? Setiap hari kamu berhasil melewati tantangan adalah bukti kalau kamu itu LUAR BIASA.
+Tahukah kamu bahwa setiap hari kamu berhasil menjalani rutinitas, berbuat baik, dan tetap tersenyum itu adalah pencapaian yang luar biasa?
 
-Mungkin kadang kamu merasa biasa aja, atau bahkan merasa kurang... Tapi coba deh, liat cermin sebentar.
+Mungkin bagi kamu hal itu terasa biasa saja... Tapi sebenarnya tidak lho.
 
-Yang kamu liat di sana adalah seseorang yang:
-• Punya senyum yang bisa bikin orang lain ikutan bahagia
-• Punya hati yang begitu lembut dan pengertian
-• Selalu berusaha jadi versi terbaik dari dirinya sendiri
+Yang aku lihat dari kamu adalah seseorang yang:
+• Punya cara pandang yang positif terhadap hidup
+• Selalu berusaha memberi yang terbaik dalam setiap hal
+• Mampu membuat orang lain merasa nyaman di sekitarmu
+• Punya kekuatan untuk bangkit setiap kali menghadapi tantangan
 
-Kalau hari ini kamu lelah, boleh istirahat.
-Kalau kamu sedih, boleh nangis.
-Kalau kamu bingung, boleh diam sejenak.
+Kalau hari ini kamu merasa lelah, wajar kok.
+Kalau sesekali kamu merasa down, itu manusiawi.
+Kalau kamu butuh waktu untuk diri sendiri, silakan.
 
-Tapi jangan pernah lupa...
-Kamu itu berharga. Sangat berharga.
+Yang penting ingat...
+Kamu itu berharga dan bermakna.
+Kehadiranmu di dunia ini membuat perbedaan.
 
-Dan aku? Aku bangga banget sama kamu. 🌟`
+Dan aku? Aku merasa beruntung bisa mengenal seseorang seperti kamu. 🌟`
       },
       {
-        html: `<h1>Satu pertanyaan terakhir... 💕</h1>
-               <p>Boleh nggak aku jadi teman yang selalu ngingetin kalau kamu itu amazing?</p>
-               <div style="margin: 20px 0;">
-                 <div style="font-size: 3rem; animation: pulse 1.5s infinite;">🥺</div>
-               </div>
-               <button class="btn" onclick="ending(true)" style="background: linear-gradient(135deg, #4CAF50, #45a049);">💚 Boleh banget!</button>
-               <button class="btn" onclick="ending(false)" style="background: linear-gradient(135deg, #FFA726, #FF7043);">😅 Ah masa sih...</button>`
+        html: `<h1>Boleh aku jadi teman yang supportive?</h1>
+               <p>Yang selalu mengingatkan tentang hal-hal baik tentang dirimu?</p>
+               <div class="decorative-icon heartbeat">🥺</div>
+               <p style="font-size: 0.95rem; opacity: 0.8; margin-bottom: 25px;">
+                 Tenang, nggak akan lebay kok... Cuma reminder gentle aja
+               </p>
+               <button class="btn" onclick="ending(true)" style="background: linear-gradient(135deg, #4CAF50, #45a049);">💚 Boleh dong!</button>
+               <button class="btn" onclick="ending(false)" style="background: linear-gradient(135deg, #FFA726, #FF7043);">😅 Hmm... mungkin lain kali</button>`
       }
     ];
 
-    let currentResponse = '';
+    // Initialize particles with better timing
+    function createBackgroundParticles() {
+      for (let i = 0; i < 60; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + 'vw';
+          particle.style.width = particle.style.height = Math.random() * 6 + 3 + 'px';
+          particle.style.animationDelay = Math.random() * 15 + 's';
+          particle.style.animationDuration = Math.random() * 8 + 12 + 's';
+          bgParticles.appendChild(particle);
+        }, i * 80);
+      }
+    }
 
-    function startStory() {
+    // Enhanced page load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+          main.classList.add('main-visible');
+          createBackgroundParticles();
+        }, 500);
+      }, 2000);
+    });
+
+    function startJourney() {
       try {
+        music.volume = 0.3;
         music.play();
       } catch (e) {
         console.log('Music autoplay blocked');
       }
       
-      main.classList.add('success-animation');
+      createMagicSparkles();
       setTimeout(() => {
-        main.classList.remove('success-animation');
-        nextSlide();
-      }, 600);
+        cinematicTransition();
+      }, 800);
       
       startFloatingEmojis();
+    }
+
+    function cinematicTransition() {
+      transitionOverlay.classList.add('active');
+      
+      setTimeout(() => {
+        nextSlide();
+        transitionOverlay.classList.remove('active');
+      }, 500);
     }
 
     function nextSlide(response = '') {
       if (response) {
         currentResponse = response;
         addFloatingResponse(response);
+        createMagicSparkles();
       }
 
-      if (step < slides.length) {
-        const currentSlide = slides[step];
+      if (step < cinematicSlides.length) {
+        const currentSlide = cinematicSlides[step];
         
-        // Smooth transition
-        main.style.opacity = '0';
-        main.style.transform = 'translateY(20px)';
+        // Enhanced slide transition
+        main.classList.add('fade-out');
         
         setTimeout(() => {
           main.innerHTML = currentSlide.html;
-          main.style.opacity = '1';
-          main.style.transform = 'translateY(0)';
+          main.classList.remove('fade-out');
+          main.classList.add('fade-in');
+          
+          setTimeout(() => {
+            main.classList.remove('fade-in');
+          }, 1200);
 
           if (currentSlide.isTyping && currentSlide.message) {
-            typeText(currentSlide.message, document.getElementById('typing'), () => {
-              const nextBtn = document.getElementById('nextBtn');
-              if (nextBtn) {
-                nextBtn.style.opacity = '1';
-                nextBtn.style.pointerEvents = 'auto';
-              }
-            });
+            setTimeout(() => {
+              typeTextCinematic(currentSlide.message, document.getElementById('typing'), () => {
+                const nextBtn = document.getElementById('nextBtn');
+                if (nextBtn) {
+                  nextBtn.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                  nextBtn.style.opacity = '1';
+                  nextBtn.style.pointerEvents = 'auto';
+                  nextBtn.style.transform = 'translateY(0)';
+                }
+              });
+            }, 800);
           }
 
           if (currentSlide.autoNext) {
             setTimeout(() => {
-              nextSlide();
+              cinematicTransition();
             }, currentSlide.autoNext);
           }
-        }, 300);
+        }, 800);
 
         step++;
       }
     }
 
-    function typeText(text, element, callback, speed = 50) {
+    function typeTextCinematic(text, element, callback, speed = 35) {
       let i = 0;
       element.innerHTML = '';
       
       function typing() {
         if (i < text.length) {
           element.innerHTML += text.charAt(i);
+          
+          // Add random pause for more natural typing
+          const randomPause = Math.random() > 0.95 ? 200 : 0;
           i++;
-          setTimeout(typing, speed);
-        } else if (callback) {
-          callback();
+          setTimeout(typing, speed + randomPause);
+        } else {
+          setTimeout(() => {
+            element.style.borderRight = 'none';
+            if (callback) callback();
+          }, 1000);
         }
       }
       typing();
@@ -499,72 +822,67 @@ Dan aku? Aku bangga banget sama kamu. 🌟`
 
     function addFloatingResponse(response) {
       const responses = {
-        'belum': '💪',
-        'udah': '🥰',
-        'banyak': '😍',
-        'semangat': '⚡',
-        'pelukan': '🤗',
-        'pujian': '💝'
+        'baik': '🌟',
+        'biasa': '💪',
+        'capek': '🤗',
+        'motivasi': '⚡',
+        'support': '💝',
+        'appreciation': '🌸'
       };
       
       const emoji = responses[response] || '💖';
-      createFloatingEmoji(emoji, true);
-    }
-
-    function playBoing() {
-      try {
-        const boing = document.getElementById("boing");
-        boing.currentTime = 0;
-        boing.play();
-      } catch (e) {
-        console.log('Sound effect blocked');
-      }
+      createCinematicFloatingEmoji(emoji, true);
     }
 
     function ending(choice) {
-      if (choice) {
-        main.innerHTML = `
-          <h1 style="color: #4CAF50;">YEAYYYY! 🎉</h1>
-          <p>Mulai sekarang, aku bakal jadi reminder harian kamu!</p>
-          <div style="font-size: 4rem; margin: 20px 0; animation: pulse 1s infinite;">🌟</div>
-          <p style="font-weight: 600;">Setiap hari aku akan ngingetin:</p>
-          <p>"Kalila itu amazing, strong, dan deserves all the good things!" 💖</p>
-          <button class="btn" onclick="location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2);">🔄 Ulangi lagi</button>
-        `;
-        createConfetti();
-      } else {
-        main.innerHTML = `
-          <h1>Gapapa kok... 😌</h1>
-          <p>Tapi tetep ingat ya, kamu itu istimewa!</p>
-          <div style="font-size: 3rem; margin: 20px 0;">😊</div>
-          <p>Kapan aja kamu butuh reminder, aku ada di sini! 💕</p>
-          <button class="btn" onclick="location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2);">🔄 Mulai lagi</button>
-        `;
-      }
-      playBoing();
+      createMagicSparkles();
+      
+      setTimeout(() => {
+        if (choice) {
+          main.innerHTML = `
+            <h1 style="color: #4CAF50;" class="reveal-text">TERIMA KASIH! 🎉</h1>
+            <p>Mulai sekarang, aku akan jadi teman yang supportive!</p>
+            <div class="decorative-icon">🌟</div>
+            <p style="font-weight: 600; background: rgba(255,255,255,0.2); padding: 20px; border-radius: 15px; margin: 20px 0;">
+              "Kalila itu amazing, kuat, dan pantas mendapatkan hal-hal baik dalam hidup!" 💖
+            </p>
+            <button class="btn" onclick="location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2);">🔄 Mulai dari awal</button>
+          `;
+          createEnhancedConfetti();
+        } else {
+          main.innerHTML = `
+            <h1>Tidak apa-apa kok... 😌</h1>
+            <p>Yang penting kamu tetap ingat kalau kamu itu berharga!</p>
+            <div class="decorative-icon">💫</div>
+            <p>Kapan pun kamu butuh reminder positif, aku siap membantu! 💕</p>
+            <button class="btn" onclick="location.reload()" style="background: linear-gradient(135deg, #667eea, #764ba2);">🔄 Coba lagi</button>
+          `;
+        }
+      }, 600);
     }
 
     function startFloatingEmojis() {
-      const emojis = ["💖", "🌸", "🥰", "😚", "💫", "💐", "✨", "🌟", "💕", "🦋"];
+      const emojis = ["💖", "🌸", "🥰", "😊", "💫", "🌟", "✨", "💕", "🦋", "🌺"];
       
-      emojiInterval = setInterval(() => {
+      setInterval(() => {
         const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-        createFloatingEmoji(emoji);
-      }, 2000);
+        createCinematicFloatingEmoji(emoji);
+      }, 3000);
     }
 
-    function createFloatingEmoji(emoji, special = false) {
+    function createCinematicFloatingEmoji(emoji, special = false) {
       const emojiEl = document.createElement("div");
       emojiEl.className = "floating-emoji";
-      emojiEl.style.left = Math.random() * 90 + "vw";
-      emojiEl.style.fontSize = (special ? 30 : Math.random() * 10 + 20) + "px";
+      emojiEl.style.left = Math.random() * 85 + 5 + "vw";
+      emojiEl.style.fontSize = (special ? 35 : Math.random() * 8 + 24) + "px";
       emojiEl.innerText = emoji;
       
       if (special) {
-        emojiEl.style.animationDuration = "3s";
+        emojiEl.style.animationDuration = "4s";
         emojiEl.style.zIndex = "10";
+        emojiEl.style.filter = "drop-shadow(0 0 15px rgba(255,255,255,0.8))";
       } else {
-        emojiEl.style.animationDuration = Math.random() * 4 + 6 + "s";
+        emojiEl.style.animationDuration = Math.random() * 6 + 8 + "s";
       }
       
       document.body.appendChild(emojiEl);
@@ -573,34 +891,53 @@ Dan aku? Aku bangga banget sama kamu. 🌟`
         if (emojiEl.parentNode) {
           emojiEl.remove();
         }
-      }, special ? 3000 : 10000);
+      }, special ? 4000 : 14000);
     }
 
-    function createConfetti() {
-      const colors = ['#ff6b9d', '#667eea', '#764ba2', '#ffa726', '#42a5f5'];
+    function createMagicSparkles() {
+      const sparkles = ['✨', '💫', '⭐', '🌟'];
       
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 8; i++) {
         setTimeout(() => {
-          const confetti = document.createElement('div');
-          confetti.style.position = 'fixed';
-          confetti.style.width = '10px';
-          confetti.style.height = '10px';
-          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          confetti.style.left = Math.random() * 100 + 'vw';
-          confetti.style.top = '-10px';
-          confetti.style.zIndex = '1000';
-          confetti.style.animation = 'floatUp 3s ease-out forwards';
-          document.body.appendChild(confetti);
+          const sparkle = document.createElement('div');
+          sparkle.className = 'magic-sparkle';
+          sparkle.style.left = Math.random() * 100 + 'vw';
+          sparkle.style.top = Math.random() * 100 + 'vh';
+          sparkle.innerText = sparkles[Math.floor(Math.random() * sparkles.length)];
+          document.body.appendChild(sparkle);
           
-          setTimeout(() => confetti.remove(), 3000);
-        }, i * 50);
+          setTimeout(() => sparkle.remove(), 2000);
+        }, i * 200);
       }
     }
 
-    // Add spinning animation for loading
+    function createEnhancedConfetti() {
+      const colors = ['#ff6b9d', '#667eea', '#764ba2', '#ffa726', '#42a5f5', '#4CAF50'];
+      const shapes = ['circle', 'square'];
+      
+      for (let i = 0; i < 150; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti-piece';
+          
+          const isCircle = shapes[Math.floor(Math.random() * shapes.length)] === 'circle';
+          confetti.style.borderRadius = isCircle ? '50%' : '0';
+          confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + 'vw';
+          confetti.style.animationDelay = Math.random() * 2 + 's';
+          confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+          
+          document.body.appendChild(confetti);
+          
+          setTimeout(() => confetti.remove(), 5000);
+        }, i * 30);
+      }
+    }
+
+    // Add smooth spin animation
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes spin {
+      @keyframes smoothSpin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
